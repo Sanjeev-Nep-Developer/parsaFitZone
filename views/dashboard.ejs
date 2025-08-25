@@ -1,20 +1,41 @@
 <section>
+  <!-- Stats -->
   <div class="stats-cards" id="stats">
-    <div class="stat-card"><div class="stat-value" id="stat-total">--</div><div class="stat-label">Total Members</div></div>
-    <div class="stat-card warn"><div class="stat-value" id="stat-expiring">--</div><div class="stat-label">Expiring ≤5 days</div></div>
-    <div class="stat-card danger"><div class="stat-value" id="stat-expired">--</div><div class="stat-label">Expired</div></div>
+    <div class="stat-card">
+      <div class="stat-value" id="stat-total">--</div>
+      <div class="stat-label">Total Members</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-value" id="stat-expiring">--</div>
+      <div class="stat-label">Expiring ≤5 days</div>
+    </div>
+    <div class="stat-card danger">
+      <div class="stat-value" id="stat-expired">--</div>
+      <div class="stat-label">Expired</div>
+    </div>
   </div>
 
+  <!-- Members Table -->
   <div class="panel">
     <div class="panel-head">
       <h2>Members</h2>
-      <div class="search-wrap"><input id="search" placeholder="Search name or phone..." /></div>
+      <div class="search-wrap">
+        <input id="search" placeholder="Search name or phone..." />
+      </div>
     </div>
+
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Name</th><th>Phone</th><th>Location</th><th>Joined</th><th>Expiry</th><th>Remaining</th><th>Status</th><th>Actions</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Joined</th>
+            <th>Expiry</th>
+            <th>Remaining</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="members-body">
@@ -42,16 +63,7 @@
                 <form method="post" action="/members/<%= m._id %>/delete" class="inline" data-confirm="Delete this member?">
                   <button class="btn small danger" type="submit">Delete</button>
                 </form>
-                <% if (m.status === 'expired') { %>
-                  <form method="post" action="/members/<%= m._id %>/extend" class="inline" data-loader>
-                    <select name="months" class="select small">
-                      <% for (let i=1;i<=12;i++){ %>
-                        <option value="<%= i %>"><%= i %> mo</option>
-                      <% } %>
-                    </select>
-                    <button class="btn small primary" type="submit">Extend</button>
-                  </form>
-                <% } %>
+                <!-- 🚫 Extend removed here to keep dashboard clean -->
               </td>
             </tr>
           <% }) %>

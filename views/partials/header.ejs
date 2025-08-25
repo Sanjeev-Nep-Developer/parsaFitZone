@@ -1,0 +1,22 @@
+<% if (isAuthenticated) { %>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">FP</div>
+    <div>
+      <div class="brand-title">FITZONE PARSA</div>
+      <div class="brand-sub">Membership Manager</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="/members/dashboard" class="<%= path.includes('/dashboard') ? 'active' : '' %>">Dashboard</a>
+    <a href="/members/add" class="<%= path.includes('/add') ? 'active' : '' %>">Add Member</a>
+    <a href="/members/lists/expiring" class="<%= path.includes('/lists/expiring') ? 'active' : '' %>">
+      Expiring &lt;5d <span class="pill" id="nav-expiring-count"></span>
+    </a>
+    <a href="/members/lists/expired" class="<%= path.includes('/lists/expired') ? 'active' : '' %>">
+      Expired <span class="pill" id="nav-expired-count"></span>
+    </a>
+    <a href="/logout" class="logout">Logout</a>
+  </nav>
+</header>
+<% } %>

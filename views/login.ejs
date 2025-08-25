@@ -1,0 +1,83 @@
+<section class="auth-card">
+  <h1 class="title">Login</h1>
+  <form method="post" action="/login" class="form" data-loader>
+    <div class="grid">
+      <label>Username
+        <input name="username" placeholder="Enter your username" required />
+      </label>
+      <label>Password
+        <input name="password" type="password" placeholder="Enter your password" required />
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" type="submit">Login</button>
+    </div>
+  </form>
+</section>
+
+<style>
+/* Make card centered and mobile-friendly */
+.auth-card {
+  max-width: 380px;
+  margin: 60px auto; /* add space from top */
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-card .title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Form labels and inputs */
+.form label {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+}
+
+.form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0,123,255,0.3);
+}
+
+/* Button */
+.actions {
+  margin-top: 1.5rem; /* space above button */
+}
+
+.btn.primary {
+  width: 100%;
+  padding: 0.9rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn.primary:hover {
+  background: #0056b3;
+}
+</style>

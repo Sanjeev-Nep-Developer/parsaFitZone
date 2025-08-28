@@ -7,7 +7,5 @@ Features:
 - Responsive UI.
 
 Quick start:
-1. Copy `.env.example` to `.env` and fill `MONGODB_URI` and `JWT_SECRET`.
 2. npm install
-3. npm run seed:admin  # creates admin/admin123
 4. npm run dev

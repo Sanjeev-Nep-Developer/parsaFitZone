@@ -1,0 +1,18 @@
+<section class="panel">
+  <div class="panel-head"><h2>Expiring in ≤ 5 days</h2></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th>Expiry</th><th>Remaining</th></tr></thead>
+      <tbody>
+      <% members.forEach(m => { %>
+        <tr>
+          <td><%= m.name %></td>
+          <td><%= m.phone %></td>
+          <td><%= new Date(m.membershipExpiryDate).toISOString().slice(0,10) %></td>
+          <td><%= m.remaining %> day(s)</td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

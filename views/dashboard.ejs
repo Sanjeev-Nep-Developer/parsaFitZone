@@ -1,0 +1,77 @@
+<section>
+  <!-- Stats -->
+  <div class="stats-cards" id="stats">
+    <div class="stat-card">
+      <div class="stat-value" id="stat-total">--</div>
+      <div class="stat-label">Total Members</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-value" id="stat-expiring">--</div>
+      <div class="stat-label">Expiring ≤5 days</div>
+    </div>
+    <div class="stat-card danger">
+      <div class="stat-value" id="stat-expired">--</div>
+      <div class="stat-label">Expired</div>
+    </div>
+  </div>
+
+  <!-- Members Table -->
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Members</h2>
+      <div class="search-wrap">
+        <input id="search" placeholder="Search name or phone..." />
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Joined</th>
+            <th>Expiry</th>
+            <th>Remaining</th>
+            <th>Due Amount</th>
+            <th>Payment Done</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="members-body">
+          <% members.forEach(m => { %>
+            <tr data-name="<%= m.name.toLowerCase() %>" data-phone="<%= m.phone %>">
+              <td><%= m.name %></td>
+              <td><%= m.phone %></td>
+              <td><%= m.location || '' %></td>
+              <td><%= new Date(m.joiningDate).toISOString().slice(0,10) %></td>
+              <td><%= new Date(m.membershipExpiryDate).toISOString().slice(0,10) %></td>
+              <td>
+                <% if (m.remaining >= 0) { %>
+                  <span class="pill"><%= m.remaining %> day(s)</span>
+                <% } else { %>
+                  <span class="pill danger">-<%= Math.abs(m.remaining) %> day(s)</span>
+                <% } %>
+              </td>
+              <td><%= m.dueAmount || 0 %></td>
+              <td><%= m.paymentDone || 0 %></td>
+              <td>
+                <% if (m.status === 'active') { %><span class="badge">Active</span><% } %>
+                <% if (m.status === 'expiring') { %><span class="badge warn">Expiring</span><% } %>
+                <% if (m.status === 'expired') { %><span class="badge danger">Expired</span><% } %>
+              </td>
+              <td class="actions">
+                <a class="btn small" href="/members/<%= m._id %>/edit">Edit</a>
+                <form method="post" action="/members/<%= m._id %>/delete" class="inline" data-confirm="Delete this member?">
+                  <button class="btn small danger" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

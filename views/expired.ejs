@@ -1,0 +1,37 @@
+<section class="panel">
+  <div class="panel-head">
+    <h2>Expired Members</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Expired Days</th>
+          <th>Extend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% members.forEach(m => { %>
+          <tr>
+            <td><%= m.name %></td>
+            <td><%= m.phone %></td>
+            <td><%= Math.abs(m.remaining) %></td>
+            <td>
+              <form method="post" action="/members/<%= m._id %>/extend" class="inline" data-loader>
+                <select name="months" class="select small">
+                  <% for (let i=1;i<=12;i++){ %>
+                    <option value="<%= i %>"><%= i %> mo</option>
+                  <% } %>
+                </select>
+                <button class="btn small primary" type="submit">Extend</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>

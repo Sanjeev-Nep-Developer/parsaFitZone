@@ -1,0 +1,45 @@
+<section class="panel">
+  <div class="panel-head"><h2>Add Member</h2></div>
+  <form method="post" action="/members/add" class="form" data-loader>
+    <div class="grid two">
+      <label>Name
+        <input name="name" required />
+      </label>
+
+      
+      <label>Phone
+        <input
+        type="tel"
+        maxlength="10"
+        minlength="10"
+        title="Enter a valid 10 digit Nepali Number (starting with 97 or 98)"
+        name="phone" required />
+      </label>
+
+
+      <label>Location
+        <input name="location" />
+      </label>
+      <label>Joining Date
+        <input type="date" name="joiningDate" value="<%= new Date().toISOString().slice(0,10) %>" required />
+      </label>
+      <label>Membership Duration
+        <select name="months" required>
+          <% for (let i=1;i<=12;i++){ %>
+            <option value="<%= i %>"><%= i %> month(s)</option>
+          <% } %>
+        </select>
+      </label>
+      <label>Due Amount (optional)
+        <input type="number" step="1" min="0" name="dueAmount" value="0" />
+      </label>
+      <label>Payment Done (optional)
+        <input type="number" step="1" min="0" name="paymentDone" value="0" />
+      </label>
+    </div>
+    <div class="actions">
+      <button class="btn" type="reset">Reset</button>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+  </form>
+</section>

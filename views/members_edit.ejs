@@ -1,0 +1,75 @@
+<section class="panel">
+  <div class="panel-head"><h2>Edit Member</h2></div>
+  <form
+    method="post"
+    action="/members/<%= member._id %>/edit"
+    class="form"
+    data-loader
+  >
+    <div class="grid two">
+      <label>
+        Name
+        <input name="name" value="<%- member.name %>" required />
+      </label>
+
+      <label>
+        Phone
+        <input
+          type="tel"
+          maxlength="10"
+          minlength="10"
+          title="Enter a valid 10 digit Nepali Number (starting with 97 or 98)"
+          name="phone"
+          value="<%- member.phone %>"
+          required
+        />
+      </label>
+
+      <label>
+        Location
+        <input name="location" value="<%- member.location || '' %>" />
+      </label>
+
+      <label>
+        Due Amount
+        <input
+          type="number"
+          step="1"
+          min="0"
+          name="dueAmount"
+          value="<%- member.dueAmount || 0 %>"
+        />
+      </label>
+
+      <label>
+        Payment Done
+        <input
+          type="number"
+          step="1"
+          min="0"
+          name="paymentDone"
+          value="<%- member.paymentDone || 0 %>"
+        />
+      </label>
+
+      <label>
+        Extend (Active only)
+        <select name="extendMonths">
+          <option value="">-- Do not extend --</option>
+          <% for (let i=1;i<=12;i++){ %>
+          <option value="<%= i %>"><%= i %> month(s)</option>
+          <% } %>
+        </select>
+        <small class="hint">
+          Current expiry:
+          <strong><%= new Date(member.membershipExpiryDate).toISOString().slice(0,10) %></strong>
+          (<%= member.remaining %> day(s) remaining)
+        </small>
+      </label>
+    </div>
+    <div class="actions">
+      <a class="btn" href="/members/dashboard">Back</a>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+  </form>
+</section>
